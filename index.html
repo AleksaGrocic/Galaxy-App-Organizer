@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galaxy</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="renderer.js"></script>
+</head>
+<body>
+
+    <div id="topBar">
+        <div id="title">
+            <p id="titleText">Galaxy</p>
+        </div>
+        <div id="dragRegion">
+        </div>
+        <div id="topBarButtons">
+            <button id="minimizeButton" onclick="minimizeWindow()">_</button>
+            <button id="closeButton" onclick="closeWindow()">X</button>
+        </div>
+    </div>
+
+    <div id="divButtonSettings">
+        <img id="buttonSettings" src="src/settings-icon.png" onclick="showTab('tabSettings')"/>
+    </div>
+
+    <div id="tabButtons">
+        <button id="tabButtonPrograms" class="tabButton" onclick="showTab('tabPrograms')">Programs</button>
+        <button id="tabButtonGames" class="tabButton" onclick="showTab('tabGames')">Games</button>
+    </div>  
+
+    <div id="content-container">
+
+        <div id="tabPrograms" class="tab-content">
+            <button id="addAppButton" onclick="showTab('tabAddApp')">+</button>
+        </div>
+        <div id="tabGames" class="tab-content">
+            <button id="addAppButton" onclick="showTab('tabAddApp')">+</button>
+        </div>
+    </div>
+    
+    <div id="tabAddApp" class="tab-content">
+        <input type="text" placeholder="App name" id="inputName">
+        <label for="inputExe" id="inputLabel">Choose executable</label>
+        <input type="file" accept=".exe" placeholder="Choose executable" id="inputExe">
+        <label for="inputImage" id="inputLabel">Choose image</label>
+        <input type="file" accept=".jpg, .png" placeholder="Choose cover image" id="inputImage">
+        <button id="buttonAddApp" onclick="addApp()">Add app</button>
+        <button id="cancelAddApp" onclick="returnToMainTab()">Cancel</button>
+    </div>
+
+    <div id="tabSettings" class="tab-content">
+        <div id="divChangeAccent">
+            <div id="divColorPreview">
+                <div id="colorPreview" onclick="clickColorInput('1')">
+                    <input type="color" id="colorInputOne" class="inputColor">
+                    <p id="colorLabel">Accent color 1</p>
+                </div>
+                <div id="colorPreview" onclick="clickColorInput('2')">
+                    <input type="color" id="colorInputTwo" class="inputColor">
+                    <p id="colorLabel">Accent color 2</p>
+                </div>
+            </div>
+            
+            <div id="divSubmitChangeAccent">
+                <button id="submitChangeAccent">Save</button>
+            </div>
+        </div>
+
+        <div id="divOpenJson">
+
+        </div>
+    </div>
+    
+</body>
+</html>

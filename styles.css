@@ -1,0 +1,420 @@
+body {
+    background-color: rgb(40, 44, 54);
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+}
+
+#topBar {
+    display: flex;
+    position: fixed !important;
+    height: 30px;
+    width: 100vw !important; 
+    top: 0;
+    background-color: rgb(30, 34, 42);
+    margin-bottom: 20px;
+    z-index: 1000;
+}
+
+#title {
+    display: flex;
+    align-items: center;
+    padding-left: 9px;
+    -webkit-app-region: drag;
+}
+
+#titleText {
+    font-size: 12px;
+    color: #aaaaaa;
+    font-family: Helvetica;
+    user-select: none;
+}
+
+#dragRegion {
+    -webkit-app-region: drag;
+    flex-grow: 1; /* Take up all available space */
+}
+
+#topBarButtons {
+    display: flex;
+    z-index: 1001;
+}
+
+#minimizeButton, #closeButton {
+    width: 40px;
+    height: 30px;
+    border: none;
+    background-color: rgb(30, 34, 44);
+    color: white;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+#minimizeButton:hover {
+    background-color: rgb(66,70,80);
+}
+
+#closeButton:hover {
+    background-color: red;
+}
+
+#mainButtons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#divButtonSettings {
+    margin-top: 40px;
+    display: flex;
+    height: 50px;
+    width: 20%;
+    position: absolute;
+}
+
+#buttonSettings {
+    height: 30px;
+    width: 30px;
+    margin: 10px 0px 10px 20px;
+    filter:invert(0.75);
+    transition: transform 1s ease;
+    user-select: none;
+}
+
+#buttonSettings:hover {
+    filter:invert(0.6);
+    cursor: pointer;
+}
+
+#buttonSettings:active {
+    filter:invert(0.45);
+}
+
+#tabButtons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0px 0px 20px 0px;
+    margin-top: 50px;
+}
+
+.tabButton {
+    width: 150px;
+    height: 30px;
+    border: none;
+    background-color: rgb(50,54,64);
+    color: #c7c7c7;
+    font-size: 11pt;
+    /*font-weight: bold;*/
+    cursor: pointer;
+    user-select: none;
+}
+
+#tabButtonPrograms {
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+}
+
+#tabButtonGames {
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+
+.tabButton:hover {
+    background-color: rgb(66,70,80);
+}
+
+.tabButton:active {
+    background-color: rgb(58,62,72);
+}
+
+.tabButton.active {
+    color: rgb(50,54,64);
+    font-size: 11pt;
+    font-weight: bold;
+}
+
+.tabButton.active#tabButtonPrograms {    
+    background: linear-gradient(to right, #fc6076, #ff9a44);
+}
+
+.tabButton.active#tabButtonGames {    
+    background: linear-gradient(to right, #ff9a44, #fc6076);
+}
+
+.tabButton.active:hover {
+    opacity: 0.8;
+}
+
+.tabButton.active:active {
+    opacity: 0.6;
+}
+
+#content-container {
+    flex: 1;
+    height: calc(100vh - 30px);
+}
+
+#tabPrograms, #tabGames {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 20px 0px 0px 20px;
+}
+
+#addAppButton {
+    width: 100px; 
+    height: 100px;
+    background-color: rgb(50,54,64);
+    color: #c7c7c7;
+    font-size: 36px;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    user-select: none;
+}
+
+#addAppButton:hover {
+    background-color: rgb(66,70,80);
+}
+
+#addAppButton:active {
+    background-color: rgb(58,62,72);
+}
+
+#tabAddApp {
+    display: none;
+    flex-direction: column;
+    padding-top: 120px;
+    align-items: center;
+}
+
+#inputName {
+    width: 250px;
+    height: 30px;
+    border-radius: 15px;
+    border: none;
+    background-color: rgb(50,54,64);
+    padding-left: 15px;
+    color: #c7c7c7;
+    margin-bottom: 15px;
+    font-family: Helvetica;
+    user-select: none;
+}
+
+#inputName:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgb(15, 19, 27);
+}
+
+#inputExe, #inputImage {
+    display: none;
+    user-select: none;
+}
+
+#inputLabel {
+    background-color: rgb(50,54,64);
+    width: 200px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 15px;
+    margin-bottom: 15px;
+    color: rgb(157,157,157);
+    font-family: Helvetica;
+    font-size: 10pt;
+    cursor: pointer;
+    user-select: none;
+}
+
+#inputLabel:hover {
+    background-color: rgb(66,70,80);
+}
+
+#inputLabel:active {
+    background-color: rgb(58,62,72);
+}
+
+#buttonAddApp {
+    width: 100px;
+    height: 30px;
+    border-radius: 15px;
+    border: none;
+    margin-bottom: 15px;
+    margin-top: 10px;
+    background: linear-gradient(to right, #fc6076, #ff9a44);
+    cursor: pointer;
+    user-select: none;
+}
+
+#buttonAddApp:hover {
+    opacity: 0.7;
+}
+
+#buttonAddApp:active {
+    opacity: 0.4;
+}
+
+#cancelAddApp {
+    width: 100px;
+    height: 30px;
+    border-radius: 15px;
+    border: none;
+    background-color: rgb(50,54,64);
+    color: rgb(157,157,157);
+    cursor: pointer;
+    user-select: none;
+}
+
+#cancelAddApp:hover {
+    background-color: rgb(66,70,80);
+}
+
+#cancelAddApp:active {
+    background-color: rgb(58,62,72);
+}
+
+#tabSettings {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-top: 120px;
+}
+
+#divChangeAccent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#divColorPreview {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    max-width: 380px;
+    flex-wrap: wrap;
+}
+
+#colorPreview {
+    display: flex;
+    height: 50px;
+    width: 180px;
+    background-color: rgb(50,54,64);
+    border-radius: 15px;
+    user-select: none;
+    cursor: pointer;
+}
+
+#colorPreview:hover {
+    background-color: rgb(66,70,80);
+}
+
+#colorPreview:active {
+    background-color: rgb(58,62,72);
+}
+
+.inputColor {
+    margin: auto 10px auto 5px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 45px;
+    height: 45px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.inputColor::-webkit-color-swatch {
+    border-radius: 50%;
+    border: none;
+}
+
+.inputColor::-moz-color-swatch {
+    border-radius: 50%;
+    border: none;
+}
+
+#colorLabel {
+    margin: auto 0 auto 0;
+    color: #aaaaaa;
+    font-family: Helvetica;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+#divSubmitChangeAccent {
+    display: flex;
+    width: 200px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+#submitChangeAccent {
+    width: 75px;
+    height: 30px;
+    border: none;
+    border-radius: 15px;
+    background-color: rgb(63, 255, 143);
+    font-family: Helvetica;
+    font-weight: bold;
+    cursor: pointer;
+    user-select: none;
+}
+
+#submitChangeAccent:hover {
+    opacity: 0.8;
+}
+
+#submitChangeAccent:active {
+    opacity: 0.4;
+}
+
+.app-div {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    margin-bottom: 20px;
+    margin-right: 20px;
+}
+
+.app-div:hover {
+    filter: brightness(130%);
+    cursor: pointer;
+}
+  
+.app-label {
+    position: absolute;
+    top: 100px;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 20px;
+    background-color: rgba(30, 34, 42, 0.75);
+    color: #c7c7c7;
+    font-size: 16px;
+    text-align: center;
+    line-height: 20px;
+}
+
+/* For WebKit browsers (Chrome, Safari) */
+::-webkit-scrollbar {
+    z-index: 1;
+    width: 10px; /* Width of the entire scrollbar */
+}
+  
+::-webkit-scrollbar-track {
+    margin-top: 30px;
+    background: rgb(40, 44, 54); /* Color of the scrollbar track */
+}
+  
+::-webkit-scrollbar-thumb {
+    background-color: rgb(30, 34, 42); /* Color of the scrollbar thumb */
+    border-radius: 5px; /* Rounded corners of the thumb */
+}
+  
+::-webkit-scrollbar-thumb:hover {
+    background-color: rgb(22, 26, 34); /* Color of the scrollbar thumb on hover */
+}
+  
