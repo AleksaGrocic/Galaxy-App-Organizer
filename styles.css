@@ -282,6 +282,15 @@ body {
     padding-top: 120px;
 }
 
+#settingsFrame {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px;
+    background-color: rgb(50,54,64);
+    border-radius: 20px;
+}
+
 #divChangeAccent {
     display: flex;
     flex-direction: column;
@@ -300,7 +309,7 @@ body {
     display: flex;
     height: 50px;
     width: 180px;
-    background-color: rgb(50,54,64);
+    background-color: rgb(40, 44, 54);
     border-radius: 15px;
     user-select: none;
     cursor: pointer;

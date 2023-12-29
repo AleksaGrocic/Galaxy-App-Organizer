@@ -51,25 +51,27 @@
     </div>
 
     <div id="tabSettings" class="tab-content">
-        <div id="divChangeAccent">
-            <div id="divColorPreview">
-                <div id="colorPreview" onclick="clickColorInput('1')">
-                    <input type="color" id="colorInputOne" class="inputColor">
-                    <p id="colorLabel">Accent color 1</p>
+        <div id="settingsFrame">
+            <div id="divChangeAccent">
+                <div id="divColorPreview">
+                    <div id="colorPreview" onclick="clickColorInput('1')">
+                        <input type="color" id="colorInputOne" class="inputColor">
+                        <p id="colorLabel">Accent color 1</p>
+                    </div>
+                    <div id="colorPreview" onclick="clickColorInput('2')">
+                        <input type="color" id="colorInputTwo" class="inputColor">
+                        <p id="colorLabel">Accent color 2</p>
+                    </div>
                 </div>
-                <div id="colorPreview" onclick="clickColorInput('2')">
-                    <input type="color" id="colorInputTwo" class="inputColor">
-                    <p id="colorLabel">Accent color 2</p>
+                
+                <div id="divSubmitChangeAccent">
+                    <button id="submitChangeAccent">Save</button>
                 </div>
             </div>
-            
-            <div id="divSubmitChangeAccent">
-                <button id="submitChangeAccent">Save</button>
+    
+            <div id="divOpenJson">
+                <button id="openJsonButton">Open JSON</button>
             </div>
-        </div>
-
-        <div id="divOpenJson">
-
         </div>
     </div>
     

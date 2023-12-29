@@ -4,6 +4,27 @@ const fs = require('fs');
 
 let mainWindow;
 
+function ensureDataDirectoryAndFile() {
+  const dataDirectory = path.join(app.getAppPath(), 'data');
+  const imgDirectory = path.join(app.getAppPath(), 'img');
+
+  const jsonFilePath = path.join(dataDirectory, 'data.json');
+
+  if (!fs.existsSync(dataDirectory)) {
+    fs.mkdirSync(dataDirectory);
+  }
+
+  if (!fs.existsSync(imgDirectory)) {
+    fs.mkdirSync(imgDirectory);
+  }
+
+  if (!fs.existsSync(jsonFilePath)) {
+    fs.writeFileSync(jsonFilePath, '[]');
+  }
+}
+
+ensureDataDirectoryAndFile();
+
 app.whenReady().then(() => {
   mainWindow = new BrowserWindow({
     width: 750,
@@ -27,18 +48,20 @@ app.whenReady().then(() => {
 
   ipcMain.on('get-existing-apps', (event) => {
     const jsonFilePath = path.join(app.getAppPath(), 'data', 'data.json');
+  
     fs.readFile(jsonFilePath, 'utf8', (err, fileContent) => {
       if (err) {
         console.error(err);
         return;
       }
-
+  
       const existingData = fileContent ? JSON.parse(fileContent) : [];
       event.reply('existing-apps', existingData);
     });
   });
 
   ipcMain.on('add-app', (event, data) => {
+    ensureDataDirectoryAndFile(); // Ensure data directory and file existence
     addApp(data, event);
   });
 
@@ -51,6 +74,7 @@ app.whenReady().then(() => {
   });
 
   ipcMain.on('update-app-order', (event, updatedOrder) => {
+    ensureDataDirectoryAndFile(); // Ensure data directory and file existence
     const jsonFilePath = path.join(app.getAppPath(), 'data', 'data.json');
   
     fs.readFile(jsonFilePath, 'utf8', (err, fileContent) => {
@@ -87,6 +111,11 @@ app.on('activate', () => {
   if (BrowserWindow.getAllWindows().length === 0) {
     createWindow();
   }
+});
+
+app.on('open-file', (event, filePath) => {
+  event.preventDefault();
+  mainWindow.webContents.send('open-file', filePath);
 });
 
 function addApp(data, event) {
