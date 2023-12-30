@@ -111,7 +111,6 @@ function getActiveTabId() {
 
 ipcRenderer.on('app-added', (event, appInfo) => {
   renderApp(appInfo); // Render the newly added app
-  makeAppDivsDraggable();
 });
 
 function renderExistingApps() {
@@ -125,7 +124,6 @@ function renderExistingApps() {
     existingApps.forEach(appInfo => {
       renderApp(appInfo);
     });
-    makeAppDivsDraggable();
   });
 }
 
@@ -157,43 +155,6 @@ function renderApp(appInfo) {
   } else {
     console.error(`Tab content element with id ${appInfo.type} not found.`);
   }
-}
-
-function makeAppDivsDraggable() {
-  const appDivs = document.querySelectorAll('.app-div');
-
-  appDivs.forEach(appDiv => {
-    appDiv.draggable = true;
-
-    appDiv.addEventListener('dragstart', (e) => {
-      e.dataTransfer.setData('text/plain', appDiv.getAttribute('data-app-name'));
-    });
-  });
-
-  const tabContents = document.querySelectorAll('.tab-content');
-
-  tabContents.forEach(tabContent => {
-    tabContent.addEventListener('dragover', (e) => {
-      e.preventDefault();
-    });
-
-    tabContent.addEventListener('drop', (e) => {
-      e.preventDefault();
-      const appName = e.dataTransfer.getData('text/plain');
-      const appDiv = document.querySelector(`[data-app-name="${appName}"]`);
-      const targetTabId = tabContent.id;
-
-      if (appDiv && targetTabId) {
-        // Move the app div to the target tab
-        appDiv.parentNode.removeChild(appDiv);
-        tabContent.insertBefore(appDiv, tabContent.firstChild);
-
-        // Notify the main process about the updated app order
-        const updatedOrder = Array.from(appDivs).map(div => div.getAttribute('data-app-name'));
-        ipcRenderer.send('update-app-order', updatedOrder);
-      }
-    });
-  });
 }
 
 function launchApp(appExePath) {

@@ -4,27 +4,6 @@ const fs = require('fs');
 
 let mainWindow;
 
-function ensureDataDirectoryAndFile() {
-  const dataDirectory = path.join(app.getAppPath(), 'data');
-  const imgDirectory = path.join(app.getAppPath(), 'img');
-
-  const jsonFilePath = path.join(dataDirectory, 'data.json');
-
-  if (!fs.existsSync(dataDirectory)) {
-    fs.mkdirSync(dataDirectory);
-  }
-
-  if (!fs.existsSync(imgDirectory)) {
-    fs.mkdirSync(imgDirectory);
-  }
-
-  if (!fs.existsSync(jsonFilePath)) {
-    fs.writeFileSync(jsonFilePath, '[]');
-  }
-}
-
-ensureDataDirectoryAndFile();
-
 app.whenReady().then(() => {
   mainWindow = new BrowserWindow({
     width: 750,
@@ -98,7 +77,7 @@ app.whenReady().then(() => {
         console.log(`App order updated in: ${jsonFilePath}`);
       });
     });
-  });
+  });  
 });
 
 app.on('window-all-closed', () => {
@@ -170,3 +149,24 @@ function addApp(data, event) {
     });
   });
 }
+
+function ensureDataDirectoryAndFile() {
+  const dataDirectory = path.join(app.getAppPath(), 'data');
+  const imgDirectory = path.join(app.getAppPath(), 'img');
+
+  const jsonFilePath = path.join(dataDirectory, 'data.json');
+
+  if (!fs.existsSync(dataDirectory)) {
+    fs.mkdirSync(dataDirectory);
+  }
+
+  if (!fs.existsSync(imgDirectory)) {
+    fs.mkdirSync(imgDirectory);
+  }
+
+  if (!fs.existsSync(jsonFilePath)) {
+    fs.writeFileSync(jsonFilePath, '[]');
+  }
+}
+
+ensureDataDirectoryAndFile();

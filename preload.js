@@ -1,4 +1,6 @@
-const { contextBridge, ipcRenderer, path, fs } = require('electron');
+const { contextBridge, ipcRenderer, path, fs, shell } = require('electron');
+
+console.log('Preload script executed');
 
 contextBridge.exposeInMainWorld('electron', {
   ipcRenderer: {
@@ -15,7 +17,5 @@ contextBridge.exposeInMainWorld('electron', {
   __dirname: __dirname,
   path: path,
   fs: fs,
+  shell: shell
 });
-
-// Add the following line to expose 'draggable' globally
-window.Draggable = require('draggable');
