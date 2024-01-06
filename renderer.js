@@ -153,7 +153,7 @@ function renderExistingApps() {
 function renderApp(appInfo) {
   const appDiv = document.createElement('div');
   appDiv.className = 'app-div';
-  appDiv.setAttribute('data-app-name', appInfo.appName); // Add a data attribute for app name
+  appDiv.setAttribute('data-app-name', appInfo.appName);
 
   const appImage = document.createElement('img');
   appImage.src = appInfo.imgPath;
@@ -166,17 +166,24 @@ function renderApp(appInfo) {
   appNameLabel.textContent = appInfo.appName;
 
   appDiv.appendChild(appImage);
-  //appDiv.appendChild(appNameLabel);
+  /*appDiv.appendChild(appNameLabel);*/
 
   appDiv.addEventListener('click', () => {
     launchApp(appInfo.appExePath);
   });
 
   const tabContent = document.getElementById(appInfo.type);
-  if (tabContent) {
-    tabContent.insertBefore(appDiv, tabContent.firstChild);
+  const addAppButton = tabContent.querySelector('#addAppButton'); // Select the addAppButton in the specific tab
+
+  // Find the last app element in the tab
+  const lastAppElement = tabContent.querySelector('.app-div:last-child');
+
+  // Insert the new app after the last app and before the addAppButton
+  if (lastAppElement) {
+    tabContent.insertBefore(appDiv, addAppButton);
   } else {
-    console.error(`Tab content element with id ${appInfo.type} not found.`);
+    // If there are no existing apps, insert the new app before the addAppButton directly
+    tabContent.insertBefore(appDiv, addAppButton);
   }
 }
 
