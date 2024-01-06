@@ -77,7 +77,16 @@ app.whenReady().then(() => {
         console.log(`App order updated in: ${jsonFilePath}`);
       });
     });
-  });  
+  });
+
+  ipcMain.on("open-json-file", () => {
+    const jsonFilePath = path.join(app.getAppPath(), "data", "data.json");
+  
+    shell.openPath(jsonFilePath).catch((error) => {
+      console.error(error);
+      // Handle the error as needed
+    });
+  });
 });
 
 app.on('window-all-closed', () => {

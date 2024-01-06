@@ -22,7 +22,9 @@
     </div>
 
     <div id="divButtonSettings">
-        <img id="buttonSettings" src="src/settings-icon.png" onclick="showTab('tabSettings')"/>
+        <div id="buttonSettingsSquare" onclick="showTab('tabSettings')">
+            <img id="buttonSettings" src="src/settings-icon.png"/>
+        </div>
     </div>
 
     <div id="tabButtons">
@@ -65,7 +67,7 @@
                 </div>
                 
                 <div id="divSubmitChangeAccent">
-                    <button id="submitChangeAccent">Save</button>
+                    <button id="submitChangeAccent" onclick="changeAccent()">Save</button>
                 </div>
             </div>
     
