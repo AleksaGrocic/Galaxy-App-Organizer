@@ -1,7 +1,7 @@
 const ipcRenderer = window.electron.ipcRenderer;
 
-var color1 = "#fc6076";
-var color2 = "#ff9a44";
+var color1 = localStorage.getItem("color1") || "#fc6076";
+var color2 = localStorage.getItem("color2") || "#ff9a44";
 
 document.addEventListener("DOMContentLoaded", function () {
   showTab("tabPrograms");
