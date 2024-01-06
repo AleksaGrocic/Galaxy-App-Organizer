@@ -9,7 +9,7 @@ app.whenReady().then(() => {
     width: 750,
     height: 850,
     frame: false,
-    icon: path.join(__dirname, 'src/icon.ico'),
+    icon: path.join(__dirname, 'icon.ico'),
     webPreferences: {
       nodeIntegration: true,
       preload: path.join(__dirname, 'preload.js')
